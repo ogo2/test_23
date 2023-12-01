@@ -1,12 +1,6 @@
 <?php
-	$dsn = "mysql:host=localhost;dbname=test_message";
-	$username = "root";
-	$password = "";
-
-	try {
-	    $conn = new PDO($dsn, $username, $password);
-	    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	} catch(PDOException $e) {
-	    echo "Ошибка подключения: " . $e->getMessage();
-	}
+$conn = new mysqli("localhost", "root", "", "test_23");
+if($conn->connect_error){
+    die("Ошибка: " . $conn->connect_error);
+}
 ?>
