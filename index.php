@@ -1,5 +1,12 @@
 <?php
 	session_start();
+  if(!$_SESSION['name_user']){
+    
+
+  }else{
+    include('vender/connect.php');
+    include('vender/functions.php');
+  }
 ?>
 <!doctype html>
 <html lang="en" data-bs-theme="dark">

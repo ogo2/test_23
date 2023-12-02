@@ -1,28 +1,28 @@
 <?php
 	session_start();
+  if(!$_SESSION['name_user']){
+    header('Location: index.php');
+
+  }else{
+    include('vender/connect.php');
+    include('vender/functions.php');
+  }
+  include('vender/header.php');
 ?>
-<!doctype html>
-<html lang="en" data-bs-theme="dark">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Тестовое задание</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  </head>
-  <body>
+
     <div class='container'>
     	<h1>Добавить сообщение</h1>
     	<form method="post" action='vender/functions.php'>
         <div class="mb-3">
           <label class="form-label">Заголовок</label>
-          <input required type="text" name='name_users'class="form-control" >
+          <input required type="text" name='title_message'class="form-control" >
         </div>
         <div class="mb-3">
           <label class="form-label">Сообщение</label>
-          <input required type="textarea" name='text_message' class="form-control">
+          <textarea required type="textarea" name='text_message' class="form-control"></textarea>
         </div>
        
-        <button type="submit" class="btn btn-primary">Добавить</button>
+        <button type="submit" name='button' value='add_message_button' class="btn btn-primary">Добавить</button>
       </form>
     </div>
 

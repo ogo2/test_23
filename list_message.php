@@ -1,5 +1,13 @@
 <?php
 	session_start();
+  if(!$_SESSION['name_user']){
+    header('Location: index.php');
+
+  }else{
+    include('vender/connect.php');
+    include('vender/functions.php');
+  }
+  include('vender/header.php');
 ?>
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
@@ -15,43 +23,8 @@
       <h1>Сообщения пользователей</h1>
       <div class="container text-center">
       <div class="row">
-        <div class="col">
-        	<div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Title</h5>
-              <h6 class="card-subtitle mb-2 text-body-secondary">Автор</h6>
-              <p class="card-text">Краткое содержание</p>
-              <p>
-                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Читать полностью
-                </a>
-              </p>
-              <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                  Некоторый заполнитель для компонента сворачивания. Эта панель по умолчанию скрыта, но открывается, когда пользователь активирует соответствующий триггер.
-                </div>
-              </div>
-              <p>
-                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Комментарии
-                </a>
-              </p>
-              <div class="collapse" id="collapseExample2">
-                <div class="card card-body">
-                  <h5>Имя пользователя</h5>
-                  <p>Текси комментария</p>
-                </div>
-              </div>
-              <div class="collapse" id="collapseExample2">
-                <div class="card card-body">
-                  <input type="text" name='name_users' class="form-control"">
-                  <button type="submit" class="btn btn-primary">Добавить комментарий</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <?php all_message($conn);?>
+      </div>
       </div>
     </div>
 
