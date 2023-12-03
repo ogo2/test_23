@@ -1,11 +1,12 @@
 <?php
 	require_once('connect.php');
 	session_start();
-
+	// Вход в аккаунт
 	function login(){
 		$_SESSION['name_user'] = $_POST['name_user'];
 		header('Location: ../profile.php');
 	}
+	// Добавление нового сообщения
 	function add_message($conn){
 		$name_user=$_SESSION['name_user'];
 		$title_message = $conn->real_escape_string($_POST['title_message']);
@@ -20,6 +21,7 @@
 			echo "Ошибка: " . $conn->error;
 		}
 	}
+	// выводит все сообщения в профиле 
 	function select_message($name_user, $conn){
 		$name_user=$_SESSION['name_user'];
 		$sql = "SELECT * FROM message WHERE user='$name_user'";
@@ -55,6 +57,7 @@
 								Комментарии
 							</a>
 							</p>';
+					// Вывод комментариеву
 					$sql = "SELECT * FROM comment WHERE id_message='$id_message'";
 					if($result = $conn->query($sql)){
 						if($result->num_rows > 0){
@@ -85,7 +88,7 @@
 			}
 	}
 }
-
+	// функция для редактирования сообщений
 	function update_message($conn){
 		$name_user=$_POST['name_user'];
 		$id_message = $_POST['id_message'];
@@ -99,6 +102,7 @@
 			echo "Ошибка: " . $conn->error;
 		}
 	}
+	// выводит все сообщения всех пользователей
 	function all_message($conn){
 		$sql = "SELECT * FROM message";
 		if($result = $conn->query($sql)){
@@ -127,6 +131,7 @@
 										</a>
 									</p><div class="comment_list" id="comment_list'.$id.'">';
 					$sql = "SELECT * FROM comment WHERE id_message='$id'";
+					// Вывод комментариев
 					if($result = $conn->query($sql)){
 						if($result->num_rows > 0){
 							foreach($result as $comm){
@@ -160,6 +165,7 @@
 			}
 		}
 	}
+	// функция для доавления комментария
 	function add_comment($conn){
 		$user_name=$conn->real_escape_string($_POST['user_name']);
 		$id_message = $conn->real_escape_string($_POST['id_message']);
@@ -173,10 +179,12 @@
 			echo "Ошибка: " . $conn->error;
 		}
 	}
+	// функция для выхода из аккаунта || удаляет сессию
 	function log_out(){
 		unset($_SESSION['name_user']);
 		header('Location: ../index.php');
 	}
+	// проверка нажатия кнопки
 	if(isset($_POST['button'])){
 		$but = $_POST['button'];
 		if ($but == 'login_user_but'){

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$('.button_all').click(function( event ) {
 		var button = $(this).val();
+		// Редактирование сообщения
 	  	if(button=='edit_message'){
 			event.preventDefault();
 			var id_message = this.dataset.id;
@@ -23,6 +24,7 @@ $(document).ready(function(){
 						console.log('ERROR');
 					}
 				})
+		// Выход с аккаунта
 		}if(button=='log_out'){
 			$.ajax({
 					url: '../vender/functions.php',
@@ -35,6 +37,7 @@ $(document).ready(function(){
 						console.log('ERROR');
 					}
 				})
+		// Добавление комментария
 		}if(button=='add_comment'){
 			var id_message = this.id;
 			var text_comment_area = '#text_comment_'+id_message;
