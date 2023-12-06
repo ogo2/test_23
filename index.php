@@ -1,8 +1,7 @@
 <?php
 	session_start();
-  if(!$_SESSION['name_user']){
-    
-
+  if(isset($_SESSION['name_user'])){
+    header('Location: profile.php');
   }else{
     include('vender/connect.php');
     include('vender/functions.php');
@@ -23,7 +22,7 @@
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Имя пользователя</label>
           <input type="text" name='name_user' placeholder="Вася Васильев" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div>
+          <div id="emailHelp" class="form-text">Мы никогда никому не передадим ваши данные.</div>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Пароль</label>
